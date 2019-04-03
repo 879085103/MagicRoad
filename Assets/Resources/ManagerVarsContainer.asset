@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b473d98f6d9d7514f812560e3e671eb8, type: 3}
+  m_Name: ManagerVarsContainer
+  m_EditorClassIdentifier: 
+  bgThemeSpriteList:
+  - {fileID: 21300000, guid: 9c7f8abaceea58e4db628c3935ed7c4a, type: 3}
+  - {fileID: 21300000, guid: 5feddf0396f8fd842b6a2034a343e884, type: 3}
+  - {fileID: 21300000, guid: 274864b118ac4f54589e32e7035cd77f, type: 3}
+  - {fileID: 21300000, guid: 81cb795749aefac4ea7663bc3f7f71fb, type: 3}
+  platformThemeSpriteList:
+  - {fileID: 21300002, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300012, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300004, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  - {fileID: 21300000, guid: 20da7e56cbb26b3498b25fb61fa9a7ff, type: 3}
+  commonPlatform:
+  - {fileID: 1961898717878366, guid: 25670698822082c4caffad9ae6b9b759, type: 2}
+  - {fileID: 1448297557657128, guid: 58504b6b4d43c054ea26710a6bc36339, type: 2}
+  - {fileID: 1276429273192726, guid: f74ffd9f2cc58534f826b70e61f37f63, type: 2}
+  - {fileID: 1240946559602534, guid: 3cc2a1de41d0b074f804a2c786170ebd, type: 2}
+  winterPlatform:
+  - {fileID: 1488953884873232, guid: c6ec2789010873b4e8d2dfd2af9ee0da, type: 2}
+  - {fileID: 1316840731352044, guid: d98610dc3b72f9f4fa6e0d02cf938949, type: 2}
+  - {fileID: 1892181977035946, guid: 06328dea00df9e748a63f9aa48ab73b7, type: 2}
+  grassPlatform:
+  - {fileID: 1217059128740332, guid: d6713c85fa0163f44bc4130c821c3ceb, type: 2}
+  - {fileID: 1041542384239124, guid: 7e645fcc0ab67c2489819638aa887753, type: 2}
+  spikePlatform:
+  - {fileID: 1773861205696072, guid: 44a8f9dc521310c48bd8b96521d3e6db, type: 2}
+  - {fileID: 1351739035070330, guid: 0d258d0a543b18945ae844ba4ddc549a, type: 2}
+  normalPlatform: {fileID: 1325703008652806, guid: 5faa4fdf33a93944d8fc4c2e5359ccf2,
+    type: 2}
+  character: {fileID: 1965974895814210, guid: 44d955a815378dd459b06eae49ab4a2d, type: 2}
+  nextXPos: 0.554
+  nextYPos: 0.645
