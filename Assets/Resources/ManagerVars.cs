@@ -26,6 +26,12 @@ public class ManagerVars : ScriptableObject {
     //普通平台
     public GameObject normalPlatform;
 
+    //钻石
+    public GameObject diamond;
+
+    //死亡特效
+    public GameObject deathEffect;
+
     //主角预制体
     public GameObject character;
 

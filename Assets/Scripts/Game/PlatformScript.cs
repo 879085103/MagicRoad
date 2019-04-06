@@ -6,19 +6,45 @@ public class PlatformScript : MonoBehaviour {
 
     public SpriteRenderer[] m_SpriteRenderers ;
     public GameObject[] m_Obstales;
+    private bool startTimer = false;
+    private float fallTime;
+    private Rigidbody2D my_Body;
+
+
+    private void Awake()
+    {
+        my_Body = transform.GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        if (GameManager.Instance.isGameStarted )
+      if(GameManager.Instance.isGameStarted && GameManager.Instance.isGameOver == false && startTimer == true && GameManager.Instance.isPlayerMove)
         {
-            Invoke("Fall", 3.0f);
+            fallTime -= Time.deltaTime;
+            if(fallTime < 0)
+            {
+                startTimer = false;
+                if(my_Body.bodyType != RigidbodyType2D.Dynamic)
+                {
+                    StartCoroutine("HidePlatform");
+                    my_Body.bodyType = RigidbodyType2D.Dynamic;
+                }
+            }
+
         }
-       
+        //如果平台与摄像机距离过大，将平台隐藏
+        if(transform.position.y - Camera.main.transform.position.y < -6)
+        {
+            StartCoroutine("HidePlatform");
+        }
     }
 
-    public void Init(Sprite m_Sprite, bool isRightSpawn = true)
+    public void Init(Sprite m_Sprite,float fallTime, bool isRightSpawn = true)
     {
-        for(int i = 0; i < m_SpriteRenderers.Length;i++)
+        startTimer = true;
+        this.fallTime = fallTime;
+        my_Body.bodyType = RigidbodyType2D.Static;
+        for (int i = 0; i < m_SpriteRenderers.Length;i++)
         {
             m_SpriteRenderers[i].sprite = m_Sprite;
         }
@@ -30,9 +56,11 @@ public class PlatformScript : MonoBehaviour {
     }
 
 
-    public void Fall()
+    public IEnumerator HidePlatform()
     {
-        this.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        //落下2s后隐藏
+        yield return new WaitForSeconds(1.0f);
+        this.gameObject.SetActive(false);
+        //my_Body.bodyType = RigidbodyType2D.Static;
     }
-
 }

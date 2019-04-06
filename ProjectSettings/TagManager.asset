@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - Character
+  - Obstacle
+  - Diamond
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Platform
+  - Obstacle
   - 
   - 
   - 
@@ -45,6 +47,9 @@ TagManager:
     locked: 0
   - name: Platform
     uniqueID: 559447333
+    locked: 0
+  - name: Diamond
+    uniqueID: 3260036005
     locked: 0
   - name: Character
     uniqueID: 981915243

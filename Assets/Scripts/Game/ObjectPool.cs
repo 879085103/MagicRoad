@@ -13,6 +13,8 @@ public class ObjectPool : MonoBehaviour {
     private List<GameObject> grassPlatformList = new List<GameObject>();
     private List<GameObject> winterPlatformList = new List<GameObject>();
     private List<GameObject> spikePlatformList = new List<GameObject>();
+    private List<GameObject> deathEffectList = new List<GameObject>();
+    private List<GameObject> diamondList = new List<GameObject>();
 
     private ManagerVars vars;
 
@@ -63,6 +65,16 @@ public class ObjectPool : MonoBehaviour {
             {
                 InstantiateObject(vars.spikePlatform[j], ref spikePlatformList);
             }
+        }
+
+        for(int i = 0; i < initSpawnCount; i++)
+        {
+            InstantiateObject(vars.deathEffect, ref deathEffectList);
+        }
+
+        for(int i = 0; i < initSpawnCount; i++)
+        {
+            InstantiateObject(vars.diamond, ref diamondList);
         }
     }
 
@@ -164,6 +176,38 @@ public class ObjectPool : MonoBehaviour {
         }
         int random = Random.Range(0, vars.spikePlatform.Count);
         return InstantiateObject(vars.spikePlatform[random], ref spikePlatformList);
+    }
+
+    /// <summary>
+    /// 获取死亡特效
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetDeathEffect()
+    {
+        for(int i = 0; i < deathEffectList.Count; i++)
+        {
+            if(deathEffectList[i].activeInHierarchy == false)
+            {
+                return deathEffectList[i];
+            }
+        }
+        return InstantiateObject(vars.deathEffect, ref deathEffectList);
+    }
+
+    /// <summary>
+    /// 获取钻石
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetDiamond()
+    {
+        for (int i = 0; i < diamondList.Count; i++)
+        {
+            if (diamondList[i].activeInHierarchy == false)
+            {
+                return diamondList[i];
+            }
+        }
+        return InstantiateObject(vars.diamond, ref diamondList);
     }
 
 

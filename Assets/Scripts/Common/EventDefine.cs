@@ -1,5 +1,10 @@
 ﻿public enum EventDefine
 {
     ShowGamePanel,
-    PlatformSpawn
+    PlatformSpawn,
+    AddScore,
+    UpdateScore,
+    PlayerMove,
+    UpdateDiamondCount,
+    AddDiamondCount,
 }

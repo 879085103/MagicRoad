@@ -10,11 +10,13 @@ public class GamePanel : MonoBehaviour {
     private Text txt_Score;
     private Text txt_DiamondCount;
 
+
     private void Awake()
     {
         //注册事件,添加监听
         EventCenter.AddListener(EventDefine.ShowGamePanel, Show);
-
+        EventCenter.AddListener<int>(EventDefine.UpdateScore, UpdateScore);
+        EventCenter.AddListener<int>(EventDefine.UpdateDiamondCount, UpdateDiamondCount);
         Init();
     }
 
@@ -34,7 +36,7 @@ public class GamePanel : MonoBehaviour {
     }
 
     /// <summary>
-    /// 开始按钮点击
+    /// 继续按钮点击
     /// </summary>
     private void OnPlayButtonClick()
     {
@@ -42,7 +44,9 @@ public class GamePanel : MonoBehaviour {
         btn_Pause.gameObject.SetActive(true);
         btn_Play.gameObject.SetActive(false);
 
-        //游戏开始TODO
+        //游戏继续
+        Time.timeScale = 1;
+        GameManager.Instance.isPaused = false;
     }
 
     /// <summary>
@@ -54,18 +58,34 @@ public class GamePanel : MonoBehaviour {
         btn_Play.gameObject.SetActive(true);
         btn_Pause.gameObject.SetActive(false);
 
-        //游戏暂停TODO
-    }
-
-    private void OnDestroy()
-    {
-        //移除监听
-        EventCenter.RemoveListener(EventDefine.ShowGamePanel,Show);
+        //游戏暂停
+        Time.timeScale = 0;
+        GameManager.Instance.isPaused = true;
     }
 
     private void Show()
     {
         gameObject.SetActive(true);
     }
+
+    private void UpdateScore(int score)
+    {
+        txt_Score.text = score.ToString();
+    }
+
+    private void UpdateDiamondCount(int diamondCount)
+    {
+        txt_DiamondCount.text = diamondCount.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        //移除监听
+        EventCenter.RemoveListener(EventDefine.ShowGamePanel,Show);
+        EventCenter.RemoveListener<int>(EventDefine.UpdateScore,UpdateScore);
+        EventCenter.RemoveListener<int>(EventDefine.UpdateDiamondCount, UpdateDiamondCount);
+    }
+
+  
     
 }

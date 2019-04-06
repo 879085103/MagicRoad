@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4402314148515316}
   - component: {fileID: 212713810011796740}
   - component: {fileID: 61611180542550096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61218370155101674}
   - component: {fileID: 50286994021565296}
   - component: {fileID: 114908269498010096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlatformWinter2
   m_TagString: Platform
   m_Icon: {fileID: 0}

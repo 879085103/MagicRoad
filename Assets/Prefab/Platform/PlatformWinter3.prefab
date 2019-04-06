@@ -37,9 +37,9 @@ GameObject:
   - component: {fileID: 4725015488481182}
   - component: {fileID: 212557204218405302}
   - component: {fileID: 61847413466136326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 61608399633445322}
   - component: {fileID: 50184024649215100}
   - component: {fileID: 114101554098988078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlatformWinter3
   m_TagString: Platform
   m_Icon: {fileID: 0}

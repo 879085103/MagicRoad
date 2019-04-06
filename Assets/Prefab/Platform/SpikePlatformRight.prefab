@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 61068873309774944}
   - component: {fileID: 50081149121095454}
   - component: {fileID: 114496893599379998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpikePlatformRight
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -72,9 +72,9 @@ GameObject:
   - component: {fileID: 4151243966428740}
   - component: {fileID: 212784272370272956}
   - component: {fileID: 61401770750275192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlatformSpike
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

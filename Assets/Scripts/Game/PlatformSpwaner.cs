@@ -13,6 +13,15 @@ public class PlatformSpwaner : MonoBehaviour {
 
     //平台初始位置
     public Vector3 startSpawnPos;
+    //里程碑
+    public int mileStoneCount = 10;
+    //平台掉落时间
+    public float fallTime;
+    //最小掉落时间
+    public float minFallTime;
+    //时间改变时乘的系数
+    public float multiple;
+
     //每波生成的平台数
     private int spawnPlatformCount;
     private ManagerVars vars;
@@ -55,6 +64,14 @@ public class PlatformSpwaner : MonoBehaviour {
         //生成角色
         GameObject character = Instantiate(vars.character, transform);
         character.transform.position = new Vector3(0, -1.9f, 0);
+    }
+
+    private void Update()
+    {
+        if(GameManager.Instance.isGameStarted  || GameManager.Instance.isGameOver == false)
+        {
+            UpdateFallTime();
+        }
     }
 
     /// <summary>
@@ -148,7 +165,15 @@ public class PlatformSpwaner : MonoBehaviour {
                 spikeDirPlatformPos = new Vector3(xPos, platformSpawnPos.y + vars.nextYPos, 0);
             }
         }
-       
+
+        int ranSpawnDiamond = Random.Range(0, 10);
+        if(ranSpawnDiamond == 6 && GameManager.Instance.isPlayerMove)
+        {
+            GameObject go = ObjectPool.Instance.GetDiamond();
+            go.transform.position = new Vector3(platformSpawnPos.x, platformSpawnPos.y + 0.5f, 0);
+            go.SetActive(true);
+        }
+
         //每次生成完之后更新位置
         platformSpawnPos.x = isLeftSpawn ? platformSpawnPos.x - vars.nextXPos : platformSpawnPos.x + vars.nextXPos;
         platformSpawnPos.y += vars.nextYPos;
@@ -163,7 +188,7 @@ public class PlatformSpwaner : MonoBehaviour {
         go.SetActive(true);
         //z坐标-1时普通平台不遮挡组合平台
         go.transform.position = platformSpawnPos - new Vector3(0,0,1);
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime);
             
     }
 
@@ -173,7 +198,7 @@ public class PlatformSpwaner : MonoBehaviour {
         GameObject go = ObjectPool.Instance.GetCommonPlatformGroup();
         go.SetActive(true);
         go.transform.position = platformSpawnPos;
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,!isLeftSpawn);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime,!isLeftSpawn);
         
     }
 
@@ -183,7 +208,7 @@ public class PlatformSpwaner : MonoBehaviour {
         GameObject go = ObjectPool.Instance.GetGrassPlatformGroup();
         go.SetActive(true);
         go.transform.position = platformSpawnPos;
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,!isLeftSpawn);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime,!isLeftSpawn);
     }
 
     //生成冬季主题平台
@@ -192,7 +217,7 @@ public class PlatformSpwaner : MonoBehaviour {
         GameObject go = ObjectPool.Instance.GetWinterPlatformGroup();
         go.SetActive(true);
         go.transform.position = platformSpawnPos;
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,!isLeftSpawn);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime,!isLeftSpawn);
     }
 
     //生成钉子平台
@@ -201,7 +226,7 @@ public class PlatformSpwaner : MonoBehaviour {
         GameObject go = ObjectPool.Instance.GetSpikePlatformGroup();
         go.SetActive(true);
         go.transform.position = platformSpawnPos;
-        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,!isLeftSpawn);
+        go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime,!isLeftSpawn);
     }
 
     //实现不等概率随机取值
@@ -245,7 +270,7 @@ public class PlatformSpwaner : MonoBehaviour {
                     go.SetActive(true);
                     //z坐标-1时普通平台不遮挡组合平台
                     go.transform.position = spikeDirPlatformPos - new Vector3(0, 0, 1);
-                    go.GetComponent<PlatformScript>().Init(selectPlatformSprite);
+                    go.GetComponent<PlatformScript>().Init(selectPlatformSprite,fallTime);
 
                     //每次生成完之后更新下一个位置
                     spikeDirPlatformPos.x = isLeftSpawn ? spikeDirPlatformPos.x +  vars.nextXPos : spikeDirPlatformPos.x - vars.nextYPos;
@@ -258,6 +283,20 @@ public class PlatformSpwaner : MonoBehaviour {
             isSpawnSpike = false;
             //如果没有DecidePath(),每次当生成最后一个钉子平台方向的平台时,不会生成新的平台
             DecidePath();
+        }
+    }
+
+    //更新平台掉落时间
+    private void UpdateFallTime()
+    {
+        if(GameManager.Instance.GetGameScore() > mileStoneCount)
+        {
+            mileStoneCount *= 2;
+            fallTime *= multiple;
+            if(fallTime < minFallTime)
+            {
+                fallTime = minFallTime;
+            }
         }
     }
     

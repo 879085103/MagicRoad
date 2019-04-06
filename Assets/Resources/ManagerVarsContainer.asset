@@ -38,6 +38,9 @@ MonoBehaviour:
   - {fileID: 1351739035070330, guid: 0d258d0a543b18945ae844ba4ddc549a, type: 2}
   normalPlatform: {fileID: 1325703008652806, guid: 5faa4fdf33a93944d8fc4c2e5359ccf2,
     type: 2}
+  diamond: {fileID: 1641405717951754, guid: 9664e2331416bbd42bfe89c55b3d8a27, type: 2}
+  deathEffect: {fileID: 1238044221422880, guid: 350df2fab4d00614ea1e692724874e49,
+    type: 2}
   character: {fileID: 1965974895814210, guid: 44d955a815378dd459b06eae49ab4a2d, type: 2}
   nextXPos: 0.554
   nextYPos: 0.645
