@@ -94,3 +94,4 @@ D:\Unity Project WorkSpace\幻径\obj\Debug\Assembly-CSharp.csproj.CoreCompileIn
 D:\Unity Project WorkSpace\幻径\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Unity Project WorkSpace\幻径\obj\Debug\Assembly-CSharp.dll
 D:\Unity Project WorkSpace\幻径\obj\Debug\Assembly-CSharp.pdb
+D:\Unity Project WorkSpace\幻径\Temp\bin\Debug\LitJson.dll

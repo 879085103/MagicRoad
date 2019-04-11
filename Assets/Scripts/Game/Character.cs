@@ -30,10 +30,30 @@ public class Character : MonoBehaviour {
 
     void Awake()
     {
+        EventCenter.AddListener<int>(EventDefine.ChangeSkin, ChangeSkin);
+
         rig = GetComponent<Rigidbody2D>();
         spriteRender = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         vars = ManagerVars.GetManagerVars();
+
+ 
+    }
+
+    void Start()
+    {
+        ChangeSkin(GameManager.Instance.GetSelectSkin());
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener<int>(EventDefine.ChangeSkin, ChangeSkin);
+    }
+
+    //更换皮肤
+    private void ChangeSkin(int skinIndex)
+    {
+        spriteRender.sprite = vars.characterSkinSpriteList[skinIndex];
     }
 
     void Update()
@@ -86,15 +106,17 @@ public class Character : MonoBehaviour {
             GameManager.Instance.isGameOver = true;
             GameManager.Instance.isGameStarted = false;
             //结束游戏界面
+            StartCoroutine("DelayShowGameOverPanel");
         }
 
         //第二种判断游戏结束的方法(碰到障碍物)
         if(isJumping && IsRayOnObstacle() == true&& GameManager.Instance.isGameOver == false)
         {
             PlayDeathEffect();
-            Destroy(this.gameObject);
+            spriteRender.enabled = false;
             GameManager.Instance.isGameOver = true;
             GameManager.Instance.isGameStarted = false;
+            StartCoroutine("DelayShowGameOverPanel");
         }
 
         //第三种判断游戏结束的方法(随平台一起落下)
@@ -102,9 +124,15 @@ public class Character : MonoBehaviour {
         {
             GameManager.Instance.isGameOver = true;
             GameManager.Instance.isGameStarted = false;
-            gameObject.SetActive(false);
+            StartCoroutine("DelayShowGameOverPanel");
         }
 
+    }
+
+    private IEnumerator DelayShowGameOverPanel()
+    {
+        yield return new WaitForSeconds(1.0f);
+        EventCenter.Broadcast(EventDefine.ShowGameOverPanel);
     }
 
     private GameObject lastHitGo = null;
@@ -175,6 +203,8 @@ public class Character : MonoBehaviour {
         go.SetActive(true);
         go.transform.position = transform.position;
     }
+
+    
 
     private void Jump()
     {

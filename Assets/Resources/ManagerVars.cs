@@ -26,6 +26,20 @@ public class ManagerVars : ScriptableObject {
     //普通平台
     public GameObject normalPlatform;
 
+    public GameObject skinChooseItemPre;
+
+    //商店皮肤
+    public List<Sprite> skinSpriteList = new List<Sprite>();
+
+    //角色皮肤
+    public List<Sprite> characterSkinSpriteList = new List<Sprite>();
+
+    //皮肤名
+    public List<string> skinNameList = new List<string>();
+
+    //皮肤花费
+    public List<int> skinPriceList = new List<int>();
+
     //钻石
     public GameObject diamond;
 

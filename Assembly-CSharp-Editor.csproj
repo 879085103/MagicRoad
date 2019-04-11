@@ -130,6 +130,9 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>D:/Unity2017.3/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/Unity Project WorkSpace/幻径/Assets/LitJson.dll</HintPath>
+ </Reference>
  <Reference Include="DemiLib">
  <HintPath>D:/Unity Project WorkSpace/幻径/Assets/Demigiant/DemiLib/DemiLib.dll</HintPath>
  </Reference>

@@ -38,6 +38,24 @@ MonoBehaviour:
   - {fileID: 1351739035070330, guid: 0d258d0a543b18945ae844ba4ddc549a, type: 2}
   normalPlatform: {fileID: 1325703008652806, guid: 5faa4fdf33a93944d8fc4c2e5359ccf2,
     type: 2}
+  skinChooseItemPre: {fileID: 1807307891860502, guid: 04f152fdde634eb498378df8774a549a,
+    type: 2}
+  skinSpriteList:
+  - {fileID: 21300000, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300004, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300008, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300012, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  characterSkinSpriteList:
+  - {fileID: 21300002, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300006, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300010, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300014, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  skinNameList:
+  - "\u592E\u683C\u9C81\u4EBA"
+  - "\u5FCD\u8005"
+  - "\u970D\u6BD4\u7279\u4EBA"
+  - "\u5C0F\u50F5\u5C38"
+  skinPriceList: 000000000a000000140000001e000000
   diamond: {fileID: 1641405717951754, guid: 9664e2331416bbd42bfe89c55b3d8a27, type: 2}
   deathEffect: {fileID: 1238044221422880, guid: 350df2fab4d00614ea1e692724874e49,
     type: 2}

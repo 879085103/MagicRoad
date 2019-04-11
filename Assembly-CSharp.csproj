@@ -58,19 +58,25 @@
      <Compile Include="Assets\Scripts\Common\EventDefine.cs" />
      <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Game\Character.cs" />
+     <Compile Include="Assets\Scripts\Game\GameData.cs" />
      <Compile Include="Assets\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\ObjectPool.cs" />
      <Compile Include="Assets\Scripts\Game\PlatformScript.cs" />
      <Compile Include="Assets\Scripts\Game\PlatformSpwaner.cs" />
      <Compile Include="Assets\Scripts\UI\bgTheme.cs" />
+     <Compile Include="Assets\Scripts\UI\GameOverPanel.cs" />
      <Compile Include="Assets\Scripts\UI\GamePanel.cs" />
      <Compile Include="Assets\Scripts\UI\MainPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\RankPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\ResetPanel.cs" />
+     <Compile Include="Assets\Scripts\UI\ShopPanel.cs" />
      <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+     <None Include="Assets\Resources\GameData.txt" />
      <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity2017.3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -149,6 +155,9 @@
  </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>D:/Unity2017.3/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJson">
+ <HintPath>D:/Unity Project WorkSpace/幻径/Assets/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="DemiLib">
  <HintPath>D:/Unity Project WorkSpace/幻径/Assets/Demigiant/DemiLib/DemiLib.dll</HintPath>

@@ -35,6 +35,11 @@ public class GamePanel : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+       
+    }
+
     /// <summary>
     /// 继续按钮点击
     /// </summary>
@@ -82,7 +87,7 @@ public class GamePanel : MonoBehaviour {
     {
         //移除监听
         EventCenter.RemoveListener(EventDefine.ShowGamePanel,Show);
-        EventCenter.RemoveListener<int>(EventDefine.UpdateScore,UpdateScore);
+        EventCenter.RemoveListener<int>(EventDefine.UpdateScore, UpdateScore);
         EventCenter.RemoveListener<int>(EventDefine.UpdateDiamondCount, UpdateDiamondCount);
     }
 
