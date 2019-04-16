@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RankPanel : MonoBehaviour {
 
     private Button btn_Back;
     private Text[] txt_Scores;
+    public GameObject scoreList;
 
     void Awake()
     {
         EventCenter.AddListener(EventDefine.ShowRankPanel, ShowRankPanel);
         Init();
-        gameObject.SetActive(false);
+        
     }
 
     void OnDestroy()
@@ -26,12 +28,23 @@ public class RankPanel : MonoBehaviour {
         btn_Back.onClick.AddListener(OnBackButtonClick);
 
         txt_Scores = transform.Find("ScoreList").GetComponentsInChildren<Text>();
+
+        scoreList = transform.Find("ScoreList").gameObject;
+
+        btn_Back.GetComponent<Image>().color = new Color(btn_Back.GetComponent<Image>().color.r, btn_Back.GetComponent<Image>().color.g, btn_Back.GetComponent<Image>().color.b, 0);
+        scoreList.transform.localScale = Vector3.zero;
+
+        gameObject.SetActive(false);
     }
 
     private void OnBackButtonClick()
     {
-        gameObject.SetActive(false);
-        EventCenter.Broadcast(EventDefine.ShowMainPanel);
+        EventCenter.Broadcast(EventDefine.PlayAudio);
+        btn_Back.GetComponent<Image>().DOColor(new Color(btn_Back.GetComponent<Image>().color.r, btn_Back.GetComponent<Image>().color.g, btn_Back.GetComponent<Image>().color.b, 0), 0.3f);
+        scoreList.transform.DOScale(Vector3.zero, 0.3f).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+        });    
     }
 
     private void ShowRankPanel()
@@ -44,6 +57,8 @@ public class RankPanel : MonoBehaviour {
         }
 
         gameObject.SetActive(true);
+        scoreList.transform.DOScale(Vector3.one, 0.3f);
+        btn_Back.GetComponent<Image>().DOColor(new Color(btn_Back.GetComponent<Image>().color.r, btn_Back.GetComponent<Image>().color.g, btn_Back.GetComponent<Image>().color.b, 0.3f),0.3f);
 
     }
 

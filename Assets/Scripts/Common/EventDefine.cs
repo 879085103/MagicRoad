@@ -6,6 +6,7 @@
     ShowMainPanel,
     ShowRankPanel,
     ShowResetPanel,
+    ShowLackDiamond,
     PlatformSpawn,
     AddScore,
     UpdateScore,
@@ -13,4 +14,6 @@
     UpdateDiamondCount,
     AddDiamondCount,
     ChangeSkin,
+    PlayAudio,
+    IsMusicOn,
 }

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Common\CallBack.cs" />
      <Compile Include="Assets\Scripts\Common\EventCenter.cs" />
      <Compile Include="Assets\Scripts\Common\EventDefine.cs" />
+     <Compile Include="Assets\Scripts\Game\ButtonClickAudio.cs" />
      <Compile Include="Assets\Scripts\Game\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Game\Character.cs" />
      <Compile Include="Assets\Scripts\Game\GameData.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\Scripts\UI\bgTheme.cs" />
      <Compile Include="Assets\Scripts\UI\GameOverPanel.cs" />
      <Compile Include="Assets\Scripts\UI\GamePanel.cs" />
+     <Compile Include="Assets\Scripts\UI\LackDiamond.cs" />
      <Compile Include="Assets\Scripts\UI\MainPanel.cs" />
      <Compile Include="Assets\Scripts\UI\RankPanel.cs" />
      <Compile Include="Assets\Scripts\UI\ResetPanel.cs" />
@@ -74,6 +76,7 @@
      <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\Demigiant\DemiLib\DemiLib.xml" />
+     <None Include="Assets\Resources\GameData2.txt" />
      <None Include="Assets\Demigiant\DOTween\readme.txt" />
      <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
      <None Include="Assets\Resources\GameData.txt" />

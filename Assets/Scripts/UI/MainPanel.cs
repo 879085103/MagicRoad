@@ -20,6 +20,7 @@ public class MainPanel : MonoBehaviour {
         EventCenter.AddListener(EventDefine.ShowMainPanel, Show);
         EventCenter.AddListener<int>(EventDefine.ChangeSkin, ChangeSkin);
         Init();
+        
     }
 
     //设置图标UI
@@ -36,6 +37,7 @@ public class MainPanel : MonoBehaviour {
             EventCenter.Broadcast(EventDefine.ShowGamePanel);
         }
         ChangeSkin(GameManager.Instance.GetSelectSkin());
+        ResetSound();
     }
 
     void OnDestroy()
@@ -54,8 +56,8 @@ public class MainPanel : MonoBehaviour {
         btn_Rank.onClick.AddListener(OnRankButtonClick);
         btn_Sound = transform.Find("Btns/Btn_Sound").GetComponent<Button>();
         btn_Sound.onClick.AddListener(OnSoundButtonClick);
-        btn_Sound = transform.Find("Btns/Btn_Reset").GetComponent<Button>();
-        btn_Sound.onClick.AddListener(OnResetButtonClick);
+        btn_Reset = transform.Find("Btns/Btn_Reset").GetComponent<Button>();
+        btn_Reset.onClick.AddListener(OnResetButtonClick);
 
     }
 
@@ -64,6 +66,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnStartButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         GameManager.Instance.isGameStarted = true;
         EventCenter.Broadcast(EventDefine.ShowGamePanel);
         gameObject.SetActive(false);
@@ -74,6 +77,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnShopButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         gameObject.SetActive(false);
         EventCenter.Broadcast(EventDefine.ShowShopPanel);
     }
@@ -83,7 +87,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnRankButtonClick()
     {
-        
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         EventCenter.Broadcast(EventDefine.ShowRankPanel);
     }
 
@@ -92,7 +96,24 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnSoundButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
 
+        GameManager.Instance.SetIsMusicOn(!GameManager.Instance.GetIsMusicOn());
+
+        ResetSound();
+    }
+
+    private void ResetSound()
+    {
+        if (GameManager.Instance.GetIsMusicOn())
+        {
+            btn_Sound.transform.GetChild(0).GetComponent<Image>().sprite = vars.musicOn;
+        }
+        else
+        {
+            btn_Sound.transform.GetChild(0).GetComponent<Image>().sprite = vars.musicOff;
+        }
+        EventCenter.Broadcast(EventDefine.IsMusicOn, GameManager.Instance.GetIsMusicOn());
     }
 
     /// <summary>
@@ -100,9 +121,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnResetButtonClick()
     {
-        GameManager.Instance.ResetGameData();
-        //重置皮肤
-        EventCenter.Broadcast(EventDefine.ChangeSkin,GameManager.Instance.GetSelectSkin());
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         EventCenter.Broadcast(EventDefine.ShowResetPanel);
     }
 

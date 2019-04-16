@@ -8,7 +8,6 @@ public class GameData {
     /// <summary>
     /// 是否再来一次游戏
     /// </summary>
-    
     public static bool isRestartGame = false;
 
     private bool isFirstGame;

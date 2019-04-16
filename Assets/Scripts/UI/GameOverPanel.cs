@@ -51,9 +51,11 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnHomeButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         //重新加载当前场景
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameData.isRestartGame = false;
+
     }
 
     /// <summary>
@@ -61,7 +63,9 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnRankButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         EventCenter.Broadcast(EventDefine.ShowRankPanel);
+       
     }
 
     /// <summary>
@@ -69,12 +73,14 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnRestartButtonClick()
     {
-
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         //重新加载当前场景
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameData.isRestartGame = true;
+        
     }
 
+    //显示游戏结束界面信息
     private void ShowGameOverPanel()
     {
         

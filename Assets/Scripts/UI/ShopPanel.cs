@@ -127,25 +127,28 @@ public class ShopPanel : MonoBehaviour {
     //返回按钮的点击事件
     private void OnBackButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         gameObject.SetActive (false);
         EventCenter.Broadcast(EventDefine.ShowMainPanel);
     }
     //选择皮肤按钮点击事件
     private void OnSelectButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         gameObject.SetActive(false);
-        GameManager.Instance.isGameStarted = true;
-        EventCenter.Broadcast(EventDefine.ShowGamePanel);
+        //GameManager.Instance.isGameStarted = true;
+        EventCenter.Broadcast(EventDefine.ShowMainPanel);
         GameManager.Instance.SetSelectSkin(currentIndex);
         EventCenter.Broadcast(EventDefine.ChangeSkin, currentIndex);
     }
     //购买皮肤按钮点击事件
     private  void OnBuyButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio);
         int price = int.Parse(txt_Price.text);
         if(price > GameManager.Instance.GetAllDiamond())
         {
-            Debug.Log("钻石不足，无法购买皮肤");
+            EventCenter.Broadcast(EventDefine.ShowLackDiamond, "钻石不足");
             return;
         }
         //消耗钻石

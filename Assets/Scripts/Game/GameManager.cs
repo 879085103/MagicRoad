@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using LitJson;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameManager : MonoBehaviour {
 
@@ -196,6 +197,17 @@ public class GameManager : MonoBehaviour {
         return bestScoreArr;
     }
 
+    //设置音效是否开启
+    public void SetIsMusicOn(bool value)
+    {
+        isMusicOn = value;
+        SaveGameData();
+    }
+
+    public bool GetIsMusicOn()
+    {
+        return isMusicOn;
+    }
     /// <summary>
     /// 当前皮肤是否解锁
     /// </summary>
@@ -238,46 +250,89 @@ public class GameManager : MonoBehaviour {
     }
 
     //保存游戏数据
+    //public void SaveGameData()
+    //{
+    //    gameData = new GameData();
+    //    gameData.IsFirstGame = isFirstGame;
+    //    gameData.IsMusicOn = isMusicOn;
+    //    gameData.SelectSkin = selectSkin;
+    //    gameData.SkinUnlocked = skinUnlocked;
+    //    gameData.BestScoreArr = bestScoreArr;
+    //    gameData.DiamondCount = diamondCount;
+        
+    //    string filePath = Application.dataPath + "/Resources/GameData.txt";
+    //    //将GameData对象转换为Json格式的字符串
+    //    string saveData = JsonMapper.ToJson(gameData);
+    //    //将字符串写入到文件中
+    //    //创建StreamWriter,并将字符串写入
+    //    StreamWriter writer = new StreamWriter(filePath);
+    //    writer.Write(saveData);
+    //    //关闭StreamWriter
+    //    writer.Close();
+
+    //}
+
     public void SaveGameData()
     {
-        gameData = new GameData();
-        gameData.IsFirstGame = isFirstGame;
-        gameData.IsMusicOn = isMusicOn;
-        gameData.SelectSkin = selectSkin;
-        gameData.SkinUnlocked = skinUnlocked;
-        gameData.BestScoreArr = bestScoreArr;
-        gameData.DiamondCount = diamondCount;
-        
-        string filePath = Application.dataPath + "/Resources/GameData.txt";
-        //将GameData对象转换为Json格式的字符串
-        string saveData = JsonMapper.ToJson(gameData);
-        //将字符串写入到文件中
-        //创建StreamWriter,并将字符串写入
-        StreamWriter writer = new StreamWriter(filePath);
-        writer.Write(saveData);
-        //关闭StreamWriter
-        writer.Close();
+        try
+        {
+            BinaryFormatter bf = new BinaryFormatter();
 
+            using (FileStream fs = File.Create(Application.dataPath + "/Resources/GameData2.txt"))
+            {
+                gameData = new GameData();
+                gameData.IsFirstGame = isFirstGame;
+                gameData.IsMusicOn = isMusicOn;
+                gameData.SelectSkin = selectSkin;
+                gameData.SkinUnlocked = skinUnlocked;
+                gameData.BestScoreArr = bestScoreArr;
+                gameData.DiamondCount = diamondCount;
+
+                bf.Serialize(fs, gameData);
+            }   
+        }
+        catch(System.Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        
     }
 
     //读取游戏数据
+    //public void LoadGameData()
+    //{
+    //    string filePath = Application.dataPath + "/Resources/GameData.txt";
+    //    if(File.Exists(filePath))
+    //    {
+    //        //创建一个StreamReader,用来读取流
+    //        StreamReader reader = new StreamReader(filePath);
+    //        //将读取到的流赋值给JsonStr
+    //        string jsonStr = reader.ReadToEnd();
+    //        //关闭
+    //        reader.Close();
+    //        //将jsonStr转换为GameData对象
+    //        gameData = JsonMapper.ToObject<GameData>(jsonStr);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("存档失败");
+    //    }
+    //}
+
     public void LoadGameData()
     {
-        string filePath = Application.dataPath + "/Resources/GameData.txt";
-        if(File.Exists(filePath))
+        try
         {
-            //创建一个StreamReader,用来读取流
-            StreamReader reader = new StreamReader(filePath);
-            //将读取到的流赋值给JsonStr
-            string jsonStr = reader.ReadToEnd();
-            //关闭
-            reader.Close();
-            //将jsonStr转换为GameData对象
-            gameData = JsonMapper.ToObject<GameData>(jsonStr);
+            BinaryFormatter bf = new BinaryFormatter();
+            using (FileStream fs = File.Open(Application.dataPath + "/Resources/GameData2.txt",FileMode.Open))
+            {
+                 gameData = (GameData) bf.Deserialize(fs);
+            }
         }
-        else
+        catch(System.Exception e)
         {
-            Debug.Log("存档失败");
+            Debug.Log(e.Message);
         }
+        
     }
 }

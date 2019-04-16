@@ -66,6 +66,8 @@ public class PlatformSpwaner : MonoBehaviour {
         character.transform.position = new Vector3(0, -1.9f, 0);
     }
 
+
+
     private void Update()
     {
         if(GameManager.Instance.isGameStarted  || GameManager.Instance.isGameOver == false)

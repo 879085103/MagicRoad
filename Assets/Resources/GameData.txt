@@ -1,1 +1,1 @@
-{"IsFirstGame":false,"IsMusicOn":true,"BestScoreArr":[80,4,1],"SelectSkin":1,"SkinUnlocked":[true,true,false,false],"DiamondCount":2,"isRestartGame":false}
+{"IsFirstGame":false,"IsMusicOn":true,"BestScoreArr":[0,0,0],"SelectSkin":0,"SkinUnlocked":[true,false,false,false],"DiamondCount":10,"isRestartGame":false}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//[CreateAssetMenu]
 public class ManagerVars : ScriptableObject {
 
     //背景主题
@@ -57,4 +58,7 @@ public class ManagerVars : ScriptableObject {
     public float nextXPos = 0.554f;
     public float nextYPos = 0.645f;
 
+    public AudioClip jumpClip, fallClip, hitClip, diamondClip, buttonClip;
+
+    public Sprite musicOn, musicOff;
 }

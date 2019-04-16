@@ -27,15 +27,18 @@ public class Character : MonoBehaviour {
 
 
     private ManagerVars vars;
+    private AudioSource m_AudioSource;
 
     void Awake()
     {
         EventCenter.AddListener<int>(EventDefine.ChangeSkin, ChangeSkin);
+        EventCenter.AddListener<bool>(EventDefine.IsMusicOn, IsMusicOn);
 
         rig = GetComponent<Rigidbody2D>();
         spriteRender = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         vars = ManagerVars.GetManagerVars();
+        m_AudioSource = GetComponent<AudioSource>();
 
  
     }
@@ -48,12 +51,24 @@ public class Character : MonoBehaviour {
     private void OnDestroy()
     {
         EventCenter.RemoveListener<int>(EventDefine.ChangeSkin, ChangeSkin);
+        EventCenter.RemoveListener<bool>(EventDefine.IsMusicOn, IsMusicOn);
     }
 
     //更换皮肤
     private void ChangeSkin(int skinIndex)
     {
         spriteRender.sprite = vars.characterSkinSpriteList[skinIndex];
+    }
+
+    private bool IsPointerOverGameObject(Vector2 mousePosition)
+    {
+        //创建一个点击事件
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = mousePosition;
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        //向点击位置发射一条射线,检测是否点击到UI
+        EventSystem.current.RaycastAll(eventData, raycastResults);
+        return raycastResults.Count > 0;
     }
 
     void Update()
@@ -65,9 +80,22 @@ public class Character : MonoBehaviour {
         //如果游戏处于暂停状态,不进行跳跃
         if (GameManager.Instance.isPaused)
             return;
-        //如果点击到UI,就不进行跳跃
-        if (EventSystem.current.IsPointerOverGameObject())
+
+        //if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        //{
+        //    int fingerId = Input.GetTouch(0).fingerId;
+        //    if (EventSystem.current.IsPointerOverGameObject(fingerId))
+        //        return;
+        //}
+        //else if(Application.platform == RuntimePlatform.WindowsEditor)
+        //{
+        //    //如果点击到UI,就不进行跳跃
+        //    if (EventSystem.current.IsPointerOverGameObject())
+        //        return;
+        //}
+        if (IsPointerOverGameObject(Input.mousePosition))
             return;
+     
 
         if (GameManager.Instance.isGameStarted == false || GameManager.Instance.isGameOver)
             return;
@@ -79,6 +107,8 @@ public class Character : MonoBehaviour {
                 isMove = true;
                 EventCenter.Broadcast(EventDefine.PlayerMove);
             }
+            //播放跳跃音效
+            m_AudioSource.PlayOneShot(vars.jumpClip);
             isJumping = true;
             Vector3 mousePos = Input.mousePosition;
             //点击的是左边屏幕 
@@ -100,6 +130,8 @@ public class Character : MonoBehaviour {
         //第一种判断游戏结束的方法(落下时未检测到平台)
         if(rig.velocity.y < 0 && IsRayOnPlatform() == false && GameManager.Instance.isGameOver == false)
         {
+            //播放人物掉落音效
+            m_AudioSource.PlayOneShot(vars.fallClip);
             spriteRender.sortingLayerName = "Default";
             //将Collier设置为false主角会下落
             boxCollider.enabled = false;
@@ -112,6 +144,8 @@ public class Character : MonoBehaviour {
         //第二种判断游戏结束的方法(碰到障碍物)
         if(isJumping && IsRayOnObstacle() == true&& GameManager.Instance.isGameOver == false)
         {
+            //播放人物碰撞障碍物音效
+            m_AudioSource.PlayOneShot(vars.hitClip);
             PlayDeathEffect();
             spriteRender.enabled = false;
             GameManager.Instance.isGameOver = true;
@@ -122,6 +156,8 @@ public class Character : MonoBehaviour {
         //第三种判断游戏结束的方法(随平台一起落下)
         if(transform.position.y - Camera.main.transform.position.y < -6 && GameManager.Instance.isGameOver == false)
         {
+            //播放人物掉落音效
+            m_AudioSource.PlayOneShot(vars.fallClip);
             GameManager.Instance.isGameOver = true;
             GameManager.Instance.isGameStarted = false;
             StartCoroutine("DelayShowGameOverPanel");
@@ -238,8 +274,15 @@ public class Character : MonoBehaviour {
         }
         else if(collision.tag == "Diamond")
         {
+            //播放得到钻石音效
+            m_AudioSource.PlayOneShot(vars.diamondClip);
             collision.gameObject.SetActive(false);
             EventCenter.Broadcast(EventDefine.AddDiamondCount);
         }
+    }
+
+    private void IsMusicOn(bool isMusicOn)
+    {
+        m_AudioSource.mute = !isMusicOn;
     }
 }
