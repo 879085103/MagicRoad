@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 11
+  controlID: 37
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 492}
   m_MaxSize: {x: 10004, y: 14042}
   vertical: 1
-  controlID: 74
+  controlID: 97
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -296,18 +296,18 @@ MonoBehaviour:
       y: 17
       width: 932
       height: 693
-    m_Scale: {x: 0.80046153, y: 0.81267583}
-    m_Translation: {x: 466, y: 346.5}
+    m_Scale: {x: 0.8321753, y: 0.8321753}
+    m_Translation: {x: 466, y: 343.2274}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -582.1641
-      y: -426.36926
-      width: 1164.3282
-      height: 852.7385
+      x: -559.97815
+      y: -412.446
+      width: 1119.9563
+      height: 832.7572
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
@@ -509,9 +509,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 0c2c0000
-    m_LastClickedID: 11276
-    m_ExpandedIDs: 94fbffff00000000fe2b00000c2c0000502c0000
+    m_SelectedIDs: 7a2a0000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 94fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -573,7 +573,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Game
+    - Assets/Animation
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -584,7 +584,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 74310000
     m_LastClickedID: 12660
-    m_ExpandedIDs: 000000009a290000d6290000502a0000bc2a0000f82a0000fa2a00001a2b00002c2b0000302b0000982b0000
+    m_ExpandedIDs: 000000009c290000d8290000522a0000bc2a0000f82a0000fa2a00001a2b00002c2b0000302b0000982b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -609,10 +609,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 193}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009a290000d6290000502a0000bc2a0000f82a0000fa2a00001a2b00002c2b0000302b0000982b0000
+    m_ExpandedIDs: 000000009c290000d8290000bc2a0000f82a0000fa2a00001a2b00002c2b0000302b0000982b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
