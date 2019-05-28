@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour {
         {
             BinaryFormatter bf = new BinaryFormatter();
 
-            using (FileStream fs = File.Create(Application.dataPath + "/Resources/GameData2.txt"))
+            using (FileStream fs = File.Create(Application.persistentDataPath + "/GameData2.txt"))
             {
                 gameData = new GameData();
                 gameData.IsFirstGame = isFirstGame;
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour {
         try
         {
             BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream fs = File.Open(Application.dataPath + "/Resources/GameData2.txt",FileMode.Open))
+            using (FileStream fs = File.Open(Application.persistentDataPath + "/GameData2.txt",FileMode.Open))
             {
                  gameData = (GameData) bf.Deserialize(fs);
             }
